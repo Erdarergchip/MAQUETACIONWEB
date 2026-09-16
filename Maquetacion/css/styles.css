@@ -1,0 +1,666 @@
+/* =========================================================
+   FARMACIA CHÁVEZ — Hoja de estilos principal
+   Maquetación clásica pura · Diseño fluido SIN @media
+   Sin Flexbox · Sin Grid · Sin JavaScript · Sin formularios
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   1. RESET Y MODELO DE CAJA
+   --------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+body,
+h1, h2, h3, h4, h5, h6,
+p, ul, ol, dl, dd, figure, blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   2. VARIABLES GLOBALES
+   --------------------------------------------------------- */
+:root {
+  --verde-oscuro: #063d2c;
+  --verde-medio: #0d6b4d;
+  --verde-claro: #e6f3ec;
+  --verde-acento: #16a06b;
+  --texto: #1c2b26;
+  --texto-suave: #4a5d55;
+  --fondo: #f6faf8;
+  --blanco: #ffffff;
+  --borde: #cfe3d8;
+  --sombra: 0 2px 6px rgba(6, 61, 44, 0.08);
+  --radio: 10px;
+
+  --ancho-max: 1180px;
+  --espacio: clamp(1rem, 2.2vw, 2rem);
+  --espacio-seccion: clamp(2rem, 5vw, 4rem);
+
+  --fuente-titulo: "Georgia", "Times New Roman", serif;
+  --fuente-cuerpo: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------------------------------------------------------
+   3. ESTILOS BASE DEL DOCUMENTO
+   --------------------------------------------------------- */
+body {
+  font-family: var(--fuente-cuerpo);
+  font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--texto);
+  background-color: var(--fondo);
+  padding: clamp(0.5rem, 1.5vw, 1.25rem);
+  max-width: 100%;
+}
+
+/* Enlace de salto accesible */
+.salto-contenido {
+  display: block;
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--verde-oscuro);
+  color: var(--blanco);
+  padding: 0.75rem 1.25rem;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.salto-contenido:focus {
+  top: 0;
+}
+
+/* Enlaces generales */
+a {
+  color: var(--verde-medio);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus {
+  color: var(--verde-acento);
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--verde-acento);
+  outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+   4. CABECERA
+   --------------------------------------------------------- */
+.cabecera {
+  display: block;
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+  padding: var(--espacio);
+  border-radius: var(--radio) var(--radio) 0 0;
+  border-bottom: 4px solid var(--verde-acento);
+  text-align: center;
+}
+
+.cabecera__sello {
+  display: inline-block;
+  font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verde-claro);
+  border: 1px solid var(--verde-acento);
+  border-radius: 999px;
+  padding: 0.25rem 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.cabecera__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.75rem, 1.2rem + 2.6vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.5rem;
+}
+
+.cabecera__titulo::after {
+  content: "";
+  display: block;
+  width: clamp(60px, 12vw, 120px);
+  height: 3px;
+  margin: 0.75rem auto 0;
+  background-color: var(--verde-acento);
+  border-radius: 2px;
+}
+
+.cabecera__lema {
+  font-size: clamp(0.95rem, 0.9rem + 0.3vw, 1.1rem);
+  color: var(--verde-claro);
+  max-width: 55ch;
+  margin: 0 auto 1rem;
+}
+
+.cabecera__estado {
+  margin-bottom: 1.25rem;
+  font-size: 0.95rem;
+}
+
+.insignia {
+  display: inline-block;
+  background-color: var(--verde-acento);
+  color: var(--blanco);
+  font-weight: 700;
+  padding: 0.25rem 0.9rem;
+  border-radius: 999px;
+  margin-right: 0.5rem;
+  letter-spacing: 0.02em;
+}
+
+/* ---------------------------------------------------------
+   5. MENÚ DE NAVEGACIÓN (inline-block, sin flex)
+   --------------------------------------------------------- */
+.menu {
+  display: block;
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  padding-top: 1rem;
+}
+
+.menu__lista {
+  display: block;
+  text-align: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+.menu__lista li {
+  display: inline-block;
+  margin: 0.25rem 0.35rem;
+}
+
+.menu__lista a {
+  display: inline-block;
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: clamp(0.85rem, 0.8rem + 0.2vw, 0.95rem);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 6px;
+}
+
+.menu__lista a:hover,
+.menu__lista a:focus {
+  background-color: var(--verde-medio);
+  border-color: var(--verde-acento);
+  color: var(--blanco);
+}
+
+/* ---------------------------------------------------------
+   6. CONTENEDOR PRINCIPAL
+   --------------------------------------------------------- */
+main {
+  display: block;
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--blanco);
+  padding: var(--espacio);
+  box-shadow: var(--sombra);
+}
+
+/* ---------------------------------------------------------
+   7. SECCIONES GENÉRICAS
+   --------------------------------------------------------- */
+.seccion {
+  display: block;
+  padding-top: var(--espacio-seccion);
+  padding-bottom: var(--espacio-seccion);
+  border-bottom: 1px solid var(--borde);
+}
+
+.seccion:last-of-type {
+  border-bottom: none;
+}
+
+.seccion h2 {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2.1rem);
+  color: var(--verde-oscuro);
+  margin-bottom: 0.85rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--verde-claro);
+}
+
+.seccion h3 {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.1rem, 1rem + 0.6vw, 1.35rem);
+  color: var(--verde-medio);
+  margin-bottom: 0.5rem;
+}
+
+.seccion p {
+  margin-bottom: 1rem;
+  max-width: 72ch;
+}
+
+.seccion__intro {
+  color: var(--texto-suave);
+  font-style: italic;
+}
+
+/* ---------------------------------------------------------
+   8. LISTAS SEMÁNTICAS
+   --------------------------------------------------------- */
+.lista-ventajas {
+  display: block;
+  margin: 1rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.lista-ventajas li {
+  display: block;
+  position: relative;
+  padding-left: 1.75rem;
+  margin-bottom: 0.6rem;
+  color: var(--texto-suave);
+}
+
+.lista-ventajas li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--verde-acento);
+  font-weight: 700;
+}
+
+.lista-numerada {
+  display: block;
+  counter-reset: paso;
+  margin: 1rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.lista-numerada li {
+  display: block;
+  position: relative;
+  counter-increment: paso;
+  padding-left: 2.25rem;
+  margin-bottom: 0.6rem;
+  color: var(--texto-suave);
+}
+
+.lista-numerada li::before {
+  content: counter(paso);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+  font-weight: 700;
+  font-size: 0.85rem;
+  border-radius: 50%;
+}
+
+/* ---------------------------------------------------------
+   9. REJILLA DE TARJETAS (ul + li + article, sin flex/grid)
+   --------------------------------------------------------- */
+.rejilla {
+  display: block;
+  font-size: 0;
+  margin-top: 1.25rem;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+  padding-left: 0;
+  list-style: none;
+}
+
+.rejilla > li {
+  display: inline-block;
+  vertical-align: top;
+  width: calc(33.333% - 1.1rem);
+  margin: 0 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.tarjeta {
+  display: block;
+  height: 100%;
+  padding: clamp(1rem, 1.8vw, 1.5rem);
+  background-color: var(--fondo);
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--verde-acento);
+  border-radius: var(--radio);
+}
+
+.tarjeta p {
+  color: var(--texto-suave);
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.datos {
+  display: block;
+  border-top: 1px dashed var(--borde);
+  padding-top: 0.75rem;
+}
+
+.datos dt {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-right: 0.4rem;
+}
+
+.datos dd {
+  display: inline-block;
+  color: var(--texto);
+  font-size: 0.9rem;
+  margin-right: 0.9rem;
+}
+
+/* ---------------------------------------------------------
+   10. DETALLES DESPLEGABLES (details / summary)
+   --------------------------------------------------------- */
+.desplegable {
+  display: block;
+  margin-bottom: 0.85rem;
+  background-color: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.desplegable summary {
+  display: block;
+  cursor: pointer;
+  list-style: none;
+  padding: 0.9rem 3rem 0.9rem 1.15rem;
+  position: relative;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  background-color: var(--verde-claro);
+  font-size: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+}
+
+.desplegable summary::-webkit-details-marker {
+  display: none;
+}
+
+.desplegable summary:hover {
+  background-color: #d4ebdf;
+}
+
+.desplegable summary::after {
+  content: "+";
+  position: absolute;
+  right: 1.15rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.6rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  background-color: var(--verde-acento);
+  color: var(--blanco);
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.desplegable[open] summary::after {
+  content: "−";
+  background-color: var(--verde-oscuro);
+}
+
+.desplegable[open] summary {
+  background-color: var(--verde-medio);
+  color: var(--blanco);
+}
+
+.desplegable > p,
+.desplegable > ul,
+.desplegable > ol {
+  padding: 0.9rem 1.15rem;
+  margin: 0;
+  border-top: 1px solid var(--borde);
+  background-color: var(--blanco);
+}
+
+/* ---------------------------------------------------------
+   11. TABLA DE HORARIOS (tabla HTML nativa)
+   --------------------------------------------------------- */
+.tabla-horarios {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  background-color: var(--blanco);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  font-size: clamp(0.85rem, 0.8rem + 0.25vw, 1rem);
+}
+
+.tabla-horarios caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  padding: 0.75rem 1rem;
+  background-color: var(--verde-claro);
+  border: 1px solid var(--borde);
+  border-bottom: none;
+  font-size: 0.9rem;
+}
+
+.tabla-horarios thead {
+  background-color: var(--verde-oscuro);
+  color: var(--blanco);
+}
+
+.tabla-horarios tr {
+  border-bottom: 1px solid var(--borde);
+}
+
+.tabla-horarios th,
+.tabla-horarios td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.tabla-horarios thead th {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tabla-horarios tbody tr:nth-child(even) {
+  background-color: var(--fondo);
+}
+
+.tabla-horarios tbody th {
+  color: var(--verde-oscuro);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------
+   12. BLOQUES DE UBICACIÓN Y CONTACTO
+   --------------------------------------------------------- */
+.direccion {
+  display: block;
+  font-style: normal;
+  background-color: var(--fondo);
+  border-left: 4px solid var(--verde-acento);
+  padding: 1rem 1.25rem;
+  border-radius: 0 var(--radio) var(--radio) 0;
+  margin-bottom: 1rem;
+  color: var(--texto-suave);
+  line-height: 1.7;
+}
+
+.direccion strong {
+  color: var(--verde-oscuro);
+  font-size: 1.05rem;
+}
+
+.contacto {
+  display: block;
+  background-color: var(--fondo);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+
+.contacto dt {
+  display: block;
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.75rem;
+}
+
+.contacto dt:first-of-type {
+  margin-top: 0;
+}
+
+.contacto dd {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.contacto dd a {
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--verde-acento);
+}
+
+/* ---------------------------------------------------------
+   13. NOTA DESTACADA
+   --------------------------------------------------------- */
+.nota {
+  display: block;
+  background-color: #fff8e1;
+  border-left: 4px solid #d99b00;
+  padding: 0.85rem 1.15rem;
+  border-radius: 0 var(--radio) var(--radio) 0;
+  color: #5c4400;
+  font-size: 0.95rem;
+  margin-top: 1rem;
+}
+
+.nota mark {
+  background-color: #ffe08a;
+  color: #5c4400;
+  font-weight: 700;
+  padding: 0 0.25rem;
+  border-radius: 3px;
+}
+
+mark {
+  background-color: var(--verde-claro);
+  color: var(--verde-oscuro);
+  padding: 0 0.2rem;
+  border-radius: 3px;
+}
+
+/* ---------------------------------------------------------
+   14. PIE DE PÁGINA
+   --------------------------------------------------------- */
+.pie {
+  display: block;
+  width: 100%;
+  max-width: var(--ancho-max);
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--verde-oscuro);
+  color: var(--verde-claro);
+  padding: var(--espacio);
+  border-radius: 0 0 var(--radio) var(--radio);
+  border-top: 4px solid var(--verde-acento);
+  text-align: center;
+}
+
+.pie__titulo {
+  font-family: var(--fuente-titulo);
+  font-size: clamp(1.2rem, 1rem + 1vw, 1.6rem);
+  color: var(--blanco);
+  margin-bottom: 0.4rem;
+}
+
+.pie__titulo strong {
+  font-weight: 700;
+}
+
+.pie__texto {
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  color: var(--verde-claro);
+}
+
+.pie__nav ul {
+  display: block;
+  text-align: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  padding-left: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  list-style: none;
+}
+
+.pie__nav li {
+  display: inline-block;
+  margin: 0.25rem 0.6rem;
+}
+
+.pie__nav a {
+  color: var(--blanco);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.pie__nav a:hover,
+.pie__nav a:focus {
+  background-color: var(--verde-medio);
+  color: var(--blanco);
+}
+
+.pie__legal {
+  font-size: 0.8rem;
+  color: #a8c8b8;
+  line-height: 1.6;
+}
